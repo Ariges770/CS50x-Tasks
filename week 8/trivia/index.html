@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Ari's Trivia Page!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+            function isCorrect(btn, answer_ID) {
+                var Choice_Answer = btn.parentElement.title;
+                if (btn.innerHTML === Choice_Answer) {
+                    btn.style.backgroundColor = "green";
+                    btn.style.color = "white";
+                    document.querySelector(answer_ID).innerHTML="Correct!";
+                }
+                else {
+                    btn.style.backgroundColor = "red";
+                    btn.style.color = "white";
+                    document.querySelector(answer_ID).innerHTML="Incorrect!";
+                }
+            }
+
+            function text_question(answer, ID, answer_ID) {
+                var textbox = document.getElementById(ID);
+                var usr_input = textbox.value;
+                usr_input = usr_input.toLowerCase().trim();
+                    if (usr_input.includes(answer)) {
+                        textbox.style.backgroundColor = "green";
+                        document.querySelector(answer_ID).innerHTML = "Correct!";
+                    }
+                    else {
+                        textbox.style.backgroundColor = "red";
+                        document.querySelector(answer_ID).innerHTML = "Incorrect!";
+                    }
+                }
+
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <h3>Which language is not taught in CS50x?</h3>
+                <div id="Q-1" title="C++">
+                    <button onclick="isCorrect(this, '#Q-1_answer')">C</button>
+                    <button onclick="isCorrect(this, '#Q-1_answer')">Python</button>
+                    <button onclick="isCorrect(this, '#Q-1_answer')">HTML</button>
+                    <button onclick="isCorrect(this, '#Q-1_answer')">C++</button>
+                    <button onclick="isCorrect(this, '#Q-1_answer')">Javascript</button>
+                    <button onclick="isCorrect(this, '#Q-1_answer')">SQLite3</button><br>
+                    <label id="Q-1_answer" style="font-size: 24px;"></label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                <h3>Which is the most popular framework for audio plugin programming?</h3>
+                <input autocomplete="off" id="Q-2" type="text" name="part_2">
+                <input type="submit" name="part_2" onclick="text_question('juce', 'Q-2', '#Q-2_answer')"><br>
+                <label id="Q-2_answer" style="font-size: 24px;"></label>
+            </div>
+        </div>
+    </body>
+</html>
