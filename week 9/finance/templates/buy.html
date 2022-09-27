@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy Stocks
+{% endblock %}
+
+{% block main %}
+<div style="height: 10vh;"></div>
+<div class="row">
+    <div class="col"></div>
+    <div class="col">
+        <form action="/buy" method="post">
+            <div class="mb-4" class="">
+                <input autocomplete="off" autocapitalize="characters" type="text" name="symbol" placeholder="Ticker Symbol" oninput="capitalise()" class="form-control col-sm-5">
+            </div>
+            <div class="mb-4">
+                <input autocomplete="off" autocapitalize="characters" type="text" name="shares" placeholder="How Many Shares To Buy?" class="form-control col-sm-5">
+            </div>
+            <div class="mb-4">
+                <button type="submit" class="btn col-sm-4 btn-outline-dark">Buy</button>
+            </div>
+        </form>
+    </div>
+    <div class="col"></div>
+{% endblock %}

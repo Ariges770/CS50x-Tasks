@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your Stock Positions
+{% endblock %}
+
+{% block main %}
+<div style="height: 10vh;"></div>
+<div class="row">
+    <div class="col"></div>
+    <div class="col-7">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Ticker</th>
+                    <th scope="col">Total Shares</th>
+                    <th scope="col">Share Price</th>
+                    <th scope="col">Market Value/Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for holding in listings %}
+                <tr>
+                    <td>{{holding["name"]}}</td>
+                    <td>{{holding["ticker"]}}</td>
+                    <td>{{holding["total_shares"]}}</td>
+                    <td>{{holding["price"]}}</td>
+                    <td>{{holding["total_price"] | usd}}</td>
+                </tr>
+                {% endfor %}
+    
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>Cash Balance</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{totals["cash"] | usd}}</td>
+                </tr>
+                <tr>
+                    <th>Total</th>
+                    <td>{{totals["names"]}}</td>
+                    <td>{{totals["shares"]}}</td>
+                    <td></td>
+                    <td>{{totals["value"] | usd}}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="col"></div>
+  </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quoted Stock Price
+{% endblock %}
+
+{% block main %}
+<div style="height: 10vh;"></div>
+<div class="row">
+    <div class="col"></div>
+    <div class="col-7">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Ticker</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{stockInfo["name"]}}</td>
+                    <td>{{stockInfo["symbol"]}}</td>
+                    <td>{{stockInfo["price"]}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col"></div>
+  </div>
+{% endblock %}

@@ -1,0 +1,4 @@
+cs50==9.2.2
+Flask==2.2.2
+requests==2.22.0
+Werkzeug==2.2.2

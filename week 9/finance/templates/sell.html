@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell Stocks
+{% endblock %}
+
+{% block main %}
+<script>
+    function maxShares() {
+        ticker = document.querySelector("select[name='symbol']").selectedOptions[0].id;
+        var numberOfShares = document.querySelector("select[name='sharesOption']");
+        numberOfShares.innerHTML = `<option selected>0</option>`;
+        for (var n = 0; n < ticker; n++) {
+            numberOfShares.innerHTML += `<option value="${n + 1}">${n + 1}</option>`;
+        }
+    };
+    function inputIsOption() {
+        value = document.querySelector("select[name='sharesOption']").selectedOptions[0].innerHTML;
+        document.querySelector("input[name='shares']").value = value;
+    };
+</script>
+<div style="height: 10vh;"></div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+        <form action="/sell" method="post">
+            <div class="mb-4">
+                <select name="symbol" aria-label="symbols_selection" class="form-select col-sm-5" onchange="maxShares()">
+                    <option selected>Which Stock Do You Want To Sell?</option>
+                    {% for ticker in stocks_owned %}
+                    <option id="{{ticker['shares_owned']}}" value="{{ticker['ticker']}}">{{ticker["ticker"]}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="mb-4">
+                <select class="form-select col-sm-5" id="" name="sharesOption" placeholder="How Many Shares To Sell?" value="0" onchange="inputIsOption()">
+                    <option selected>0</option>
+                </select>
+            </div>
+            <input type="text" class="form-control mb-4" value="0" name="shares">
+
+            <div class="mb-4">
+                <button type="submit" class="btn col-sm-4 btn-outline-dark">Sell</button>
+            </div>
+        </form>
+        </div>
+        <div class="col"></div>
+    </div>    
+{% endblock %}
